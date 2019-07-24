@@ -1,4 +1,8 @@
+import abc from "./main";
+import app from "./app";
 import "./index.css";
+
+console.log(abc);
 
 var container = document.getElementById("main");
 
