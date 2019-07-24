@@ -1,3 +1,5 @@
+import "./index.css";
+
 var container = document.getElementById("main");
 
 container.addEventListener("click", function() {
