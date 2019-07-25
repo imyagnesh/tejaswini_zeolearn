@@ -8,20 +8,65 @@
     <meta name="description" content="" />
     <title>Document</title>
     <link rel="stylesheet" href="./ext-4.1.1a/resources/css/ext-all.css" />
+    <link rel="stylesheet" href="./index.css" />
     <script type="text/javascript" src="./ext-4.1.1a/ext-all.js"></script>
   </head>
   <body>
-    <div id="helloWorldPanel"></div>
+    <div id="ext-viewport" class="x-viewport">
+      <div id="ext-grid1" class="x-grid">
+        <div class="gridTitle">Students</div>
+        <table id="ext-table1" class="blueTable">
+          <thead>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Yagnesh</td>
+              <td>yagnesh.modh@gmail.com</td>
+              <td>8690090417</td>
+            </tr>
+            <tr>
+              <td>Namrata</td>
+              <td>namrata@gmail.com</td>
+              <td>123232323</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <script type="text/javascript">
-      // Ext.onReady(function() {
-      Ext.create("Ext.Panel", {
-        renderTo: "helloWorldPanel",
-        height: 200,
-        width: 600,
-        title: "Hello World",
-        html: "First Ext JS"
+      document.addEventListener("DOMContentLoaded", function() {
+        launch();
       });
-      // });
+
+      function addRowHandler(table, fn) {
+        var table = document.getElementById(table);
+        var rows = table.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+          var row = table.rows[i];
+          var cols = row.getElementsByTagName("td");
+          const obj = {};
+          for (let j = 0; j < cols.length; j++) {
+            obj[j] = cols[j].innerHTML;
+          }
+          console.log(obj);
+          row.onclick = function() {
+            return fn(JSON.stringify(obj));
+          };
+        }
+      }
+
+      function launch() {
+        console.log("page is loaded");
+        addRowHandler("ext-table1", onselect);
+      }
+
+      function onselect(data) {
+        alert(data);
+      }
     </script>
+    <!-- <script type="text/javascript" src="index.js"></script> -->
   </body>
 </html>

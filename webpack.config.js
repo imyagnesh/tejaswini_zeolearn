@@ -1,10 +1,11 @@
 const path = require("path");
+var webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: ["./index.js"],
+  entry: "./index.js",
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "app.js"
@@ -15,6 +16,11 @@ module.exports = {
         test: /\.css$/,
         exclude: /node_modules/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: "html-loader"
       }
     ]
   },
