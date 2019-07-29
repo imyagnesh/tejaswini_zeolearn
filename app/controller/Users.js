@@ -7,18 +7,25 @@
 
 Ext.define("AM.controller.Users", {
   extend: "Ext.app.Controller",
-  views: ["user.List"],
+  stores: ["Users"],
+  views: ["user.List", "user.Edit"],
   init: function() {
     this.control({
       userlist: {
         itemdblclick: this.editUser
+      },
+      "useredit buttons[action=save]": {
+        click: this.updateUser
       }
     });
   },
 
   editUser: function(grid, record) {
-    console.log(grid);
-    console.log(record);
-    console.log("doble clicked on " + record.get("name"));
+    var view = Ext.widget("useredit");
+    view.down("form").loadRecord(record);
+  }
+
+  updateUser: function(button) {
+    console.log(clicked save button)
   }
 });
