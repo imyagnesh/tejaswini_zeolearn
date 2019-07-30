@@ -1,4 +1,28 @@
-.x-viewport {
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 500px;
+}
+
+.firstDiv {
+  background-color: red;
+  flex-grow: 5;
+  order: 3;
+}
+
+.secondDiv {
+  background-color: blue;
+  flex-grow: 1;
+  align-self: flex-start;
+}
+
+.thirdDiv {
+  background-color: yellow;
+  flex-shrink: 5;
+}
+
+/* .x-viewport {
   margin: 0;
   border: 5px solid green;
   width: 100%;
@@ -48,4 +72,4 @@
 .blueTable th {
   font-weight: 600;
   text-align: left;
-}
+} */
