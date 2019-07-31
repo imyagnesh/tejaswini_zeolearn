@@ -27,16 +27,28 @@ Ext.define("User", {
   }
 });
 
-var User = Ext.ModelManager.getModel("User");
+// var Instance = Ext.ModelManager.getModel("User");
 
-User.load(1, {
-  success: function(user) {
-    console.log(user.data);
-    // console.log(user.getId()); //logs 123
-  }
-});
+// // var Instance = Ext.create("User");
 
-var user = Ext.create("User", {
+// Instance.load(1, {
+//   scope: this,
+//   success: function(record, operation) {
+//     console.log(record);
+//     console.log(operation);
+//   },
+//   failure: function(record, operation) {
+//     console.log(record);
+//     console.log(operation);
+//   },
+//   callback: function(record, operation, success) {
+//     console.log(record);
+//     console.log(operation);
+//     console.log(success);
+//   }
+// });
+
+var Instance1 = Ext.create("User", {
   name: "Namrata",
   age: 32,
   phone: "8690090417",
@@ -44,7 +56,13 @@ var user = Ext.create("User", {
   username: "Namrata123"
 });
 
-user.save();
+Instance1.save();
+
+setTimeout(() => {
+  Instance1.set("name", "Tejaswini");
+
+  Instance1.save();
+}, 2000);
 
 // var user = Ext.create("User", { name: "Ed Spencer", email: "ed@sencha.com" });
 // user.save();
