@@ -1,19 +1,21 @@
 {
   "users": [
     {
-      "name": "Namrata1",
-      "email": "Namrata.modh@gmail.com",
-      "id": 1
+      "id": 1,
+      "name": "Yagnesh",
+      "age": 32,
+      "phone": "8690090417",
+      "gender": "Male",
+      "username": "yagnesh123"
     },
     {
       "id": 2,
       "name": "Namrata",
-      "email": "Namrata.modh@gmail.com"
-    },
-    {
-      "id": 3,
-      "name": "tejaswini",
-      "email": "tejaswini.sur@gmail.com"
+      "age": 32,
+      "phone": "8690090417",
+      "gender": "Female",
+      "username": "Namrata123",
+      "alive": true
     }
   ]
 }
