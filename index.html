@@ -79,6 +79,80 @@
         alert(data);
       }
     </script> -->
-    <script type="text/javascript" src="./app.js"></script>
+    <script type="text/javascript">
+      Ext.application({
+        name: "MyApp",
+        launch: function() {
+          Ext.define("SessionGridPanel", {
+            extend: "Ext.grid.Panel",
+            alias: "widget.sessionGridPanel",
+            store: {
+              fields: [
+                { name: "title", sortType: "asUCText" },
+                { name: "id", sortType: "asInt" },
+                "approved"
+              ],
+              autoLoad: true,
+              autoSync: true,
+              proxy: {
+                type: "rest",
+                url: "http://localhost:3004/session",
+                reader: {
+                  type: "json"
+                }
+              },
+              sorters: [{ property: "title" }]
+            },
+            columns: [
+              { text: "Id", dataIndex: "id" },
+              { text: "Title", dataIndex: "title", flex: 1 },
+              { text: "Approved", dataIndex: "approved" }
+            ]
+          });
+          Ext.create("Ext.container.Viewport", {
+            layout: {
+              type: "border"
+            },
+            items: [
+              {
+                region: "west",
+                split: true,
+                flex: 1,
+                layout: {
+                  type: "vbox",
+                  align: "stretch"
+                },
+                items: [
+                  {
+                    xtype: "sessionGridPanel",
+                    flex: 3
+                  },
+                  {
+                    xtype: "splitter",
+                    width: 1
+                  },
+                  {
+                    xtype: "panel",
+                    html: "<b>Speakers panel</b>",
+                    flex: 1
+                  }
+                ]
+              },
+              {
+                region: "center",
+                html: "<b>Details panel</b>",
+                flex: 1,
+                xtype: "panel",
+                title: "Details Panel",
+                collapsible: true,
+                collapsed: true,
+                collapseDirection: "right"
+              }
+            ]
+          });
+        }
+      });
+    </script>
+    <!-- <script type="text/javascript" src="./app.js"></script> -->
   </body>
 </html>

@@ -17,5 +17,17 @@
       "username": "Namrata123",
       "alive": true
     }
+  ],
+  "session": [
+    {
+      "id": 2,
+      "title": "Javascript Tutorial",
+      "approved": true
+    },
+    {
+      "id": 1,
+      "title": "Ext JS",
+      "approved": true
+    }
   ]
 }
