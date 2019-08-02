@@ -80,17 +80,78 @@
       }
     </script> -->
     <script type="text/javascript">
+      Ext.Loader.setConfig({
+        enable: true
+      });
+
       Ext.application({
         name: "MyApp",
         launch: function() {
+          Ext.define("SessionForm", {
+            extend: "Ext.window.Window",
+            alias: "widget.sessionForm",
+            padding: 5,
+            width: 600,
+            title: "Edit Sessions",
+            model: true,
+            items: [
+              {
+                xtype: "form",
+                bodyPadding: 10,
+                defaults: {
+                  labelWidth: 90,
+                  margin: "0 0 10 0",
+                  anchor: "90%"
+                },
+                items: [
+                  {
+                    xtype: "textfield",
+                    name: "title",
+                    fieldLabel: "Title"
+                  },
+                  {
+                    xtype: "checkboxfield",
+                    name: "approved",
+                    fieldLabel: "Approved"
+                  },
+                  {}
+                ]
+              }
+            ]
+          });
+
           Ext.define("SessionGridPanel", {
             extend: "Ext.grid.Panel",
             alias: "widget.sessionGridPanel",
+            listeners: {
+              itemdblclick: function(v, record) {
+                var formWindow = Ext.create("SessionForm");
+                var form = formWindow.down("form");
+                form.loadRecord(record);
+                formWindow.show();
+              }
+            },
+
             store: {
               fields: [
                 { name: "title", sortType: "asUCText" },
                 { name: "id", sortType: "asInt" },
-                "approved"
+                "approved",
+                {
+                  name: "sessionTimeDateTime",
+                  sortType: "asDate",
+                  type: "date",
+                  dateFormat: "c"
+                },
+                {
+                  name: "sessionTimePretty",
+                  type: "string",
+                  convert: function(v, rec) {
+                    var convertIt = Ext.util.Format.dateRenderer("m/d/Y g:i a");
+                    var pretty = convertIt(rec.get("sessionTimeDateTime"));
+                    return pretty;
+                  }
+                }
               ],
               autoLoad: true,
               autoSync: true,
@@ -101,14 +162,26 @@
                   type: "json"
                 }
               },
-              sorters: [{ property: "title" }]
+              sorters: [{ property: "title" }],
+              groupField: "sessionTimeDateTime"
             },
             columns: [
               { text: "Id", dataIndex: "id" },
               { text: "Title", dataIndex: "title", flex: 1 },
-              { text: "Approved", dataIndex: "approved" }
+              { text: "Approved", dataIndex: "approved" },
+              {
+                text: "Session Start Date",
+                dataIndex: "sessionTimeDateTime"
+              }
+            ],
+            features: [
+              {
+                ftype: "grouping",
+                groupHeaderTpl: "Total records: {rows.length}"
+              }
             ]
           });
+
           Ext.create("Ext.container.Viewport", {
             layout: {
               type: "border"

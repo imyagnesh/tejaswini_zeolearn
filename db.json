@@ -20,14 +20,34 @@
   ],
   "session": [
     {
-      "id": 2,
+      "id": 6,
       "title": "Javascript Tutorial",
-      "approved": true
+      "approved": true,
+      "sessionTimeDateTime": "2019-08-01T13:15:00"
     },
     {
-      "id": 1,
+      "id": 2,
       "title": "Ext JS",
-      "approved": true
+      "approved": true,
+      "sessionTimeDateTime": "2019-08-02T13:15:00"
+    },
+    {
+      "id": 3,
+      "title": "C++",
+      "approved": true,
+      "sessionTimeDateTime": "2019-08-01T13:15:00"
+    },
+    {
+      "id": 4,
+      "title": "Node js",
+      "approved": true,
+      "sessionTimeDateTime": "2019-08-02T13:15:00"
+    },
+    {
+      "id": 5,
+      "title": "Express js",
+      "approved": true,
+      "sessionTimeDateTime": "2019-08-02T13:15:00"
     }
   ]
 }
