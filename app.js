@@ -179,3 +179,52 @@
 // //     });
 // //   }
 // // });
+
+Ext.application({
+  name: "myApp",
+  appFolder: "src",
+  requires: ["Ext.container.Viewport"],
+  launch: function() {
+    Ext.create("Ext.container.Viewport", {
+      layout: {
+        type: "border"
+      },
+      items: [
+        {
+          region: "west",
+          split: true,
+          flex: 1,
+          layout: {
+            type: "vbox",
+            align: "stretch"
+          },
+          items: [
+            {
+              xtype: "sessionGridPanel",
+              flex: 3
+            },
+            {
+              xtype: "splitter",
+              width: 1
+            },
+            {
+              xtype: "panel",
+              html: "<b>Speakers panel</b>",
+              flex: 1
+            }
+          ]
+        },
+        {
+          region: "center",
+          html: "<b>Details panel</b>",
+          flex: 1,
+          xtype: "panel",
+          title: "Details Panel",
+          collapsible: true,
+          collapsed: true,
+          collapseDirection: "right"
+        }
+      ]
+    });
+  }
+});
